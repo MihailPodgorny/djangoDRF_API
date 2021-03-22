@@ -20,3 +20,7 @@ python manage.py runserver
 ```
 python manage.py createsuperuser
 ```
+6. При необходимости запуска тестов:
+```
+python manage.py test
+```

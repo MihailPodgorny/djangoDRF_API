@@ -1,16 +1,16 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class Wallet(models.Model):
     """
     Описание модели Кошелек.
     """
-    name = models.CharField(max_length=255, verbose_name="Наименование")
+    name = models.CharField(max_length=255, verbose_name="Наименование", default='My new wallet')
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='wallets',
-                              default=User.username,
                               verbose_name="Владелец кошелька")
-    balance = models.DecimalField(max_digits=6, decimal_places=2, default=0,
+    balance = models.DecimalField(max_digits=6, decimal_places=2, default='0.00',
                                   verbose_name="Баланс кошелька, ₽")
 
     class Meta:
@@ -25,14 +25,13 @@ class Transaction(models.Model):
     """
     Описание модели Транзакция.
     """
-    OPERATION = (
-        ('+', 'Income'),
-        ('-', 'Outcome'),
-    )
+    class OperationType(models.TextChoices):
+        INCOME = '+', _('income')
+        OUTCOME = '-', _('outcome')
 
     wallet = models.ForeignKey('Wallet', on_delete=models.CASCADE, related_name='transactions',
                                verbose_name="Кошелек")
-    operation = models.CharField(max_length=1, choices=OPERATION, blank=False, null=False,
+    operation = models.CharField(max_length=1, choices=OperationType.choices, blank=False, null=False,
                                  verbose_name="Тип операции")
     created_at = models.DateTimeField(auto_now_add=True, blank=True, verbose_name="Время транзакции")
     value = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Сумма транзакции, ₽")
