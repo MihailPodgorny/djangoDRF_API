@@ -111,8 +111,10 @@ class WalletTransactionAPITestCase(APITestCase):
     def test_api_update_wallet(self):
         url_detail = reverse('wallet-detail', kwargs={'pk': self.wallet_1.pk})
         self.client.force_authenticate(user=self.owner_1)
-        response = self.client.put(url_detail, {'name': 'Changed wallet', 'balance': '777.00'})
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        response = self.client.put(url_detail, {'name': 'Changed wallet',
+                                                'owner': self.owner_1.pk,
+                                                'balance': '777.00'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = self.client.get(url_detail, kwargs={'pk': self.wallet_1.pk})
         self.assertNotEqual(response.data['balance'], '777.00')
 
