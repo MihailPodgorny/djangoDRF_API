@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST TASK</title>
+</head>
+<body>
+    <div class="container position-relative" >
+        {% include "_include/header.html" %}
+        {% include "_include/navbar.html" %}
+        {% block content %} {% endblock content %}
+        {% include "_include/footer.html" %}
+    </div>
+        {% include "_include/scripts.html" %}
+</body>
+</html>
