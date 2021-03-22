@@ -19,10 +19,17 @@ docker run --name new_django_api -p 8000:8000 -d django_api
 ```
 docker exec -ti new_django_api bash
 ```
-5. Для создания административной учетной записи в контенере:
+- для создания административной учетной записи в shell контейнера:
 ```
-cd ./config/
 python3 manage.py createsuperuser
+```
+- для запуска тестов:
+```
+python manage.py test
+```
+5. При необходимости просмотра документации:
+```
+http://127.0.0.1:8000/swagger/#
 ```
 6. Чтобы выключить и удалить контейнер:
 ```
