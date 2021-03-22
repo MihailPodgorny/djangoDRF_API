@@ -1,0 +1,12 @@
+venv/
+.idea/
+
+
+config/db.sqlite3
+
+config/api/migrations
+!config/api/migrations/__init__.py
+
+config/api/__pycache__
+config/config/__pycache__
+config/api/tests/__pycache__
