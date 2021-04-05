@@ -1,11 +1,8 @@
 venv/
 .idea/
 
-
 config/db.sqlite3
-
-config/api/migrations
-!config/api/migrations/__init__.py
+config/static/
 
 config/api/__pycache__
 config/config/__pycache__
