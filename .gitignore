@@ -2,8 +2,9 @@ venv/
 .idea/
 
 config/db.sqlite3
-config/static/
+/config/static/
 
-config/api/__pycache__
-config/config/__pycache__
-config/api/tests/__pycache__
+/config/api/__pycache__
+/config/config/__pycache__
+/config/api/tests/__pycache__
+
